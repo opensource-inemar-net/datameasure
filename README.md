@@ -33,7 +33,7 @@ The simulator simulates an embedded measurment device.
 The device consists on an IP webserver and a subcomponent that does the actual measurment. 
 The actual measurement device is connected via a not so stable connection to the IP webserver.
 
-The measurement device is counting items on a conveyor belt using a 9 bit counter.
+The measurement device is counting items on a conveyor belt using a 10 bit counter.
 The speed of the conveyor belt is changing over time.
 
 sometimes the communication between IP webserver and measurment device fails in this case the value reported might be wrong
@@ -41,14 +41,19 @@ sometimes the device reboots and the counter is reset to zero
 
 The result which is interesting for the end user is to get a result curve which is the number of items/10 seconds
 
+
+To check if communication with the simulator is okay you can use
+http://127.0.0.1/hello
+
+
 ## Requirements
 
-- The program should talk with the simulator using a call to http://127.0.0.1/datameasure/data1
-- The simulator will answer with data formated as a JSON Object in the form {{"measurepoint": "Point Blanc","data":123}}
-- The program should question the simulator every 10 seconds
-- data reported from the simulator is the state of a 9bit counter, which might overflow
+- The program should talk with the simulator using a call to http://127.0.0.1:7744/datameasure/data1
+- The simulator will answer with data formated as a JSON Object in the form {"measurepoint": "Point Blanc","data":123}
+- The program should provide a gauge value of the data value every 10 seconds
+- data reported from the simulator is the state of a 10bit counter, which might overflow
 - the data from the counter shall be converted to a gauge value (which is the difference between two values)
-- (optional) If the reported gauge value is changing more then 20% the value shall be skipped
+- (optional) If the reported gauge value is changing more then +/-  the value shall be skipped
 - (optional) if the reported gauge value is changing more then 20% and the counter is less then a gauge value this 
   shall be reported as a reboot and wrong values shall be not reported
   
