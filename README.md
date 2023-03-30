@@ -25,7 +25,7 @@ It is a simulation of retrieving measument data from an embedded device.
 
 Within the repositiory you find:
  - this file with the description of requirements for the program
- - a simulator that simulates the embedded device (java -jar dataembedded.jar)
+ - a simulator that simulates the embedded device (java -jar datameasure.jar)
  - the source code of the simulator
  
 
