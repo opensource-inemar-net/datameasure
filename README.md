@@ -79,8 +79,8 @@ In our case we have both types:
 - data reported from the simulator is the state of a 10bit counter, which might overflow -> In this case the counter starts again at 0
 - the data from the counter shall be converted to a gauge value (which is the difference between two values) and printed
   
-- (difficult) If the reported gauge value is changing more then +/- 20% of the long term average the value shall be skipped
-- (difficult) if the reported gauge value is changing more then +/- 20% of the long term average and the counter is less then 60 this 
+- (difficult) If the reported gauge value is changing more then +/- 10% of the long term average the value shall be skipped
+- (difficult) if the reported gauge value is changing more then +/- 10% of the long term average and the counter is less then 200 this 
   shall be reported as a reboot and wrong values shall be not reported
 
 Note: sometimes reboot will be reported even if it is no reboot - this is okay

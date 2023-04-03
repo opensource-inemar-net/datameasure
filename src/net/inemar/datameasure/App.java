@@ -79,7 +79,9 @@ public class App {
 
 
     public static void main( String[] args ) throws IOException 
+
     {
+        System.out.println("Version 1.2");
         HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 7744), 0);
 
 
@@ -98,26 +100,32 @@ public class App {
         Random random=new Random(System.currentTimeMillis());
         int value=0;
         int outage=0;
+        int change_speed=3;
         while(true) {
 
 
             //change target
             //System.out.println(random.nextInt(50));
-            if ((random.nextInt(100))<5) {
+            if ((random.nextInt(100))<10) {
                 target=20+random.nextInt(20);
                 System.out.println("New target "+target);
             }
 
             //change speed
+            change_speed=change_speed-1;
 
-            if (speed<target) {
-                speed=speed+random.nextInt(2);
-                System.out.println("New speed "+speed +"( "+target+")");
+            if (change_speed<=0) {
+               if (speed<target) {
+                    speed=speed+1;
+                    System.out.println("New speed "+speed +"( "+target+")");
+                };
+                if (speed>target) {
+                    speed=speed-1 ;
+                    System.out.println("New speed "+speed +"( "+target+")");
+                };
+                change_speed=3;
             };
-            if (speed>target) {
-                speed=speed-random.nextInt(2);
-                System.out.println("New speed "+speed +"( "+target+")");
-            };
+
         
             if (speed<20) {
                 speed=20;
@@ -139,7 +147,7 @@ public class App {
 
             //outage
             if ((random.nextInt(100))<3) {
-                outage=(random.nextInt(4))*5+5;
+                outage=(random.nextInt(4))*4+5;
                 System.out.println("Outage "+outage);
             }
 
@@ -150,7 +158,7 @@ public class App {
                 outage=outage-1;
             }
 
-            
+            System.out.println("Value "+measure_value+"  Bottles/sec: "+(speed/2.0));
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
