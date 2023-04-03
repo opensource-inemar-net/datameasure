@@ -22,7 +22,7 @@ If you have any question regarding the requirements make a sensible assumption a
 It is a simulation of retrieving measument data from an embedded device. 
 
 <figure>
-<img src="./Conveyor.png"/>
+<img src="https://www.pharmaindustrie-online.de/sites/default/files/field/image/sick_transpa_tect.jpg"/>
 </figure>
 
 ## Background
