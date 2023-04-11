@@ -1,9 +1,7 @@
 # datameasure
 Simulates the problem of reading performance data from devices
 
-
-
-
+<br>
 
 ## Overview
 
@@ -32,9 +30,7 @@ It is a simulation of retrieving measument data from an embedded device.
 <img src="./Conveyor.png"/>
 </figure>
 
-
-
- 
+<br>
 
 ## Background
 
@@ -43,7 +39,11 @@ Within the repository you will find:
 - a simulator that simulates the embedded device
 - the source code of the simulator
 
-The simulator simulates an embedded measurement device. It can be started with the following command: **java -jar datameasure.jar**
+The simulator simulates an embedded measurement device. It can be started with the following command: 
+
+**java -jar datameasure.jar**
+
+<br>
 
 The device consists of an IP webserver and a subcomponent that does the actual measurement. 
 The actual measurement device is connected via a not so stable connection to the IP webserver.
@@ -64,11 +64,13 @@ The result, which is interesting for the end user is:
 - Inidication that the measurement device had a restart
 
 
-To check if communication with the simulator is okay you can use
+To check if communication with the simulator is okay you can use:
+
 http://127.0.0.1:7744/hello
  
 In the program we see two different kind of values:
  
+
 
 **Counter**
 A counter is a cumulative metric that represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart. For example, you can use a counter to represent the number of requests served, tasks completed, or errors.
@@ -83,8 +85,7 @@ In our case we have both types:
 - counter -> the number of bottles counted by the device
 - gauge   -> the number of bottles/second
 
-
-
+<br>
 
 ## Requirements
 
