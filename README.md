@@ -10,7 +10,7 @@ Simulates the problem of reading performance data from devices
 
 This is a program to evaluate the capabilities of a person to write software.
 The applicant shall write a program in either
-- Java
+- Java if possible
 - Python
 
  
@@ -29,7 +29,6 @@ Please don't fork the repository.
  
 
 If you have any question regarding the requirements make a sensible assumption and document this assumption.
-<br>
 
  
 
@@ -52,8 +51,6 @@ Within the repository you will find:
 - a simulator that simulates the embedded device
 - the source code of the simulator
 
-<br>
-
  
 
 The simulator simulates an embedded measurement device. It can be started with the following command: **java -jar datameasure.jar**
@@ -73,10 +70,9 @@ The speed of the conveyor belt is changing over time.
 Sometimes the communication between the IP webserver and measurement device fails, in this case the value reported might be wrong.
 Sometimes the measurement device reboots and the counter is reset to zero.
 
+**That means that the values your program will reporting will deviate from the internal counters the datameasure simulator provides**
+
  
-
-<br>
-
  
 
 The result, which is interesting for the end user is:
@@ -91,8 +87,6 @@ To check if communication with the simulator is okay you can use
 http://127.0.0.1:7744/hello
 
  
-
-<br>
 
  
 
@@ -122,9 +116,6 @@ A gauge is a metric that represents a single numerical value that can arbitraril
 
 Gauges are typically used for measured values like temperatures or current memory usage, but also "counts" that can go up and down, like the number of concurrent requests.
 
- 
-
-<br>
 
  
 
@@ -147,7 +138,7 @@ In our case we have both types:
 
  
 
-- (difficult) If the reported gauge value is changing more than +/- 10% of the long term average the value shall be skipped
+- (difficult) If the reported gauge value is changing more than +/- 10% of the long term average of the value the wrong values shall not be reported
 - (difficult) if the reported gauge value is changing more than +/- 10% of the long term average and the counter is less than 200: This 
   shall be reported as a reboot and wrong values shall not be reported
 
@@ -155,9 +146,7 @@ In our case we have both types:
 
 Note: sometimes reboot will be reported even if it is no reboot - this is okay
 
- 
 
-<br>
 
  
 
