@@ -67,19 +67,25 @@ The result, which is interesting for the end user is:
 To check if communication with the simulator is okay you can use:
 
 http://127.0.0.1:7744/hello
- 
+
+<br>
+
 In the program we see two different kind of values:
  
 
 
 **Counter**
+
 A counter is a cumulative metric that represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart. For example, you can use a counter to represent the number of requests served, tasks completed, or errors.
 Do not use a counter to expose a value that can decrease. For example, do not use a counter for the number of currently running processes; instead use a gauge.
  
+
 **Gauge**
+
 A gauge is a metric that represents a single numerical value that can arbitrarily go up and down.
 Gauges are typically used for measured values like temperatures or current memory usage, but also "counts" that can go up and down, like the number of concurrent requests.
- 
+
+
 
 In our case we have both types:
 - counter -> the number of bottles counted by the device
