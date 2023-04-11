@@ -3,10 +3,12 @@ Simulates the problem of reading performance data from devices
 
  
 
+ 
 
 ## Overview
 
  
+
 
 This is a program to evaluate the capabilities of a person to write software.
 The applicant shall write a program in either
@@ -15,14 +17,12 @@ The applicant shall write a program in either
 
  
 
+ 
+
+ 
+
 The selection of the language will have an influence on the teams you are eligible to join.
-
- 
-
 There are two difficult requirements, which should be completed, but where it is not dramatic if this is not possible.
-
- 
-
 After finishing the task please zip your result and send it to the human resource responsible person.
 Please don't fork the repository.
 
@@ -36,13 +36,25 @@ It is a simulation of retrieving measument data from an embedded device.
 
  
 
+ 
+
+ 
+
 <figure>
 <img src="./Conveyor.png"/>
 </figure>
 
  
 
+ 
+
+ 
+
 ## Background
+
+ 
+
+ 
 
  
 
@@ -53,26 +65,39 @@ Within the repository you will find:
 
  
 
+ 
+
+ 
+
 The simulator simulates an embedded measurement device. It can be started with the following command: **java -jar datameasure.jar**
 
  
+
 
 The device consists of an IP webserver and a subcomponent that does the actual measurement. 
 The actual measurement device is connected via a not so stable connection to the IP webserver.
 
  
 
+
 The measurement device is counting items on a conveyor belt using a 10 bit counter.
 The speed of the conveyor belt is changing over time.
 
  
 
+
 Sometimes the communication between the IP webserver and measurement device fails, in this case the value reported might be wrong.
 Sometimes the measurement device reboots and the counter is reset to zero.
 
-**That means that the values your program will reporting will deviate from the internal counters the datameasure simulator provides**
+ 
+
+**That means that the values your program will be reporting will deviate from the internal counters the datameasure simulator provides**
 
  
+
+ 
+
+
  
 
 The result, which is interesting for the end user is:
@@ -82,39 +107,42 @@ The result, which is interesting for the end user is:
 
  
 
+ 
+
+ 
+
 
 To check if communication with the simulator is okay you can use
 http://127.0.0.1:7744/hello
 
  
 
- 
 
 In the program we see two different kind of values:
 
  
 
+ 
+
+ 
+
 **Counter**
-
- 
-
 A counter is a cumulative metric that represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart. For example, you can use a counter to represent the number of requests served, tasks completed, or errors.
-
- 
-
 Do not use a counter to expose a value that can decrease. For example, do not use a counter for the number of currently running processes; instead use a gauge.
 
  
 
+ 
+
+ 
+
 **Gauge**
-
- 
-
 A gauge is a metric that represents a single numerical value that can arbitrarily go up and down.
+Gauges are typically used for measured values like temperatures or current memory usage, but also "counts" that can go up and down, like the number of concurrent requests.
 
  
 
-Gauges are typically used for measured values like temperatures or current memory usage, but also "counts" that can go up and down, like the number of concurrent requests.
+
 
 
  
@@ -125,7 +153,15 @@ In our case we have both types:
 
  
 
+ 
+
+ 
+
 ## Requirements
+
+ 
+
+ 
 
  
 
@@ -138,22 +174,31 @@ In our case we have both types:
 
  
 
+
 - (difficult) If the reported gauge value is changing more than +/- 10% of the long term average of the value the wrong values shall not be reported
 - (difficult) if the reported gauge value is changing more than +/- 10% of the long term average and the counter is less than 200: This 
   shall be reported as a reboot and wrong values shall not be reported
 
  
 
+ 
+
+ 
+
 Note: sometimes reboot will be reported even if it is no reboot - this is okay
 
+ 
 
+ 
+
+ 
 
  
 
 **To calculate the long term average use the following method:**
 - have a variable that stores the sum of gauge values: SUM_GAUGE
 - have a variable to count the number of gauge values: COUNT_GAUGE
-- each iteration if you have a valid gauge value
-  - add gauge to sum: &ensp;&nbsp;SUM_GAUGE=SUM_GAGUE + actual gauge
-  - add 1 to count: &ensp;&emsp;&emsp;COUNT_GAUGE=COUNT_GAUGE +1 
+- each iteration if you have a valid gauge value:
+  - add gauge to sum: SUM_GAUGE=SUM_GAGUE + actual gauge
+  - add 1 to count:   COUNT_GAUGE=COUNT_GAUGE +1 
 - long term average: SUM_GAUGE / COUNT_GAUGE
